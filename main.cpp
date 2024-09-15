@@ -137,14 +137,11 @@ public:
         if (other.IsEmpty()) {
             return;
         }
-        SingleLinkedList tmp_reversed;
-        for (auto it = other.begin(); it != other.end(); ++it) {
-            tmp_reversed.PushFront(*it);
-        }   
         SingleLinkedList tmp;
-
-        for (auto it = tmp_reversed.begin(); it != tmp_reversed.end(); ++it) {
-            tmp.PushFront(*it);
+        auto it = this->head_;
+        for (const auto item: other) {
+            tmp.InsertAfter(it, item);
+            ++it;
         }
         swap(tmp);
     }
