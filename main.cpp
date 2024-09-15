@@ -138,12 +138,11 @@ public:
             return;
         }
         SingleLinkedList tmp;
-        auto it = this->head_;
-        for (const auto item: other) {
-            tmp.InsertAfter(it, item);
-            ++it;
+        auto it = tmp.before_begin();  // Начинаем с позиции перед началом списка
+        for (const auto& item : other) {
+            it = tmp.InsertAfter(it, item);  // Вставляем элемент после текущей позиции
         }
-        swap(tmp);
+        swap(tmp);  // Меняем текущий список с временным
     }
 
     SingleLinkedList& operator=(const SingleLinkedList& rhs) {
